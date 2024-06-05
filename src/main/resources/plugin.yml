@@ -1,0 +1,4 @@
+name: LeashBoat
+version: '${version}'
+main: net.hynse.leashboat.LeashBoat
+api-version: '1.20'
