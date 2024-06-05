@@ -84,6 +84,8 @@ public final class LeashBoat extends JavaPlugin implements Listener {
                 if (!player.getGameMode().equals(GameMode.CREATIVE)) {
                     player.getWorld().dropItem(chicken.getLocation().add(0,1,0), new ItemStack(Material.LEAD));
                 }
+            } else if (ridingEntity instanceof Chicken chicken && !chicken.isLeashed()) {
+                chicken.remove();
             }
         }
     }
@@ -97,17 +99,6 @@ public final class LeashBoat extends JavaPlugin implements Listener {
             chicken.remove();
             if (player != null && !player.getGameMode().equals(GameMode.CREATIVE) && chicken.isLeashed()) {
                 player.getWorld().dropItem(chicken.getLocation().add(0,1,0), new ItemStack(Material.LEAD));
-            }
-        }
-    }
-
-    @EventHandler
-    public void onUnleash(EntityUnleashEvent event) {
-        Entity vehicle = event.getEntity().getVehicle();
-        if (event.getEntity() instanceof Boat) {
-        Entity ridingEntity = vehicle != null ? vehicle.getVehicle() : null;
-            if (ridingEntity instanceof Chicken chicken) {
-                        chicken.remove();
             }
         }
     }
